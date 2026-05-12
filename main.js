@@ -1,3 +1,9 @@
+// စကားဝှက် စစ်ဆေးခြင်း
+let password = prompt("ကျေးဇူးပြု၍ စကားဝှက် ရိုက်ထည့်ပါ -");
+if (password !== "1234") { // '1234' နေရာတွင် မိမိထားချင်သော စကားဝှက် ပြောင်းနိုင်သည်
+    alert("စကားဝှက် မှားယွင်းနေပါသည်။");
+    document.body.innerHTML = "<h1>ဝင်ရောက်ခွင့် မရှိပါ။</h1>";
+}
 let vouchers = JSON.parse(localStorage.getItem('vouchers')) || [];
 let expenses = JSON.parse(localStorage.getItem('expenses')) || [];
 let currentType = 'External';
