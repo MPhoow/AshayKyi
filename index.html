@@ -3,107 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>အရှည်ကြီး ကားပြုပြင်ရေး</title>
+    <title>AshayKyi - Car Suspension Services</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1 class="main-title">အရှည်ကြီး</h1>
-        <h2 class="sub-title">ကားအောက်ပိုင်းပြုပြင်ရေးလုပ်ငန်း</h2>
 
-        <div id="main-menu" class="section">
-            <button class="btn main-btn" onclick="showSection('voucher-menu')">ဘောင်ချာစာရင်း</button>
-            <button class="btn main-btn" onclick="showSection('expense-menu')">အသုံးစရိတ်များ</button>
-        </div>
-
-        <div id="voucher-menu" class="section" style="display:none;">
-            <button class="btn btn-ext" onclick="openVoucherForm('External')">အပြင်ကားဘောင်ချာ</button>
-            <button class="btn btn-comp" onclick="openVoucherForm('Company')">Company ကားဘောင်ချာ</button>
-            <button class="btn btn-search" onclick="showSection('search-section')">ဘောင်ချာများ ရှာဖွေရန်</button>
-            <button class="back-link" onclick="showSection('main-menu')">← ပင်မစာမျက်နှာ</button>
-        </div>
-
-        <div id="voucher-form-section" class="section" style="display:none;">
-            <h3 id="form-title">ဘောင်ချာအသစ်သွင်းခြင်း</h3>
-            <div class="form-group">
-                <input type="hidden" id="edit-id">
-                <input type="text" id="carNo" placeholder="ကားနံပါတ်">
-                <input type="text" id="carModel" placeholder="ကားအမျိုးအစား">
-                <input type="text" id="voucherNo" placeholder="ဘောင်ချာနံပါတ်">
-                <input type="text" id="driverPhone" placeholder="ကားဆရာဖုန်းနံပါတ်">
-                
-                <div id="company-select-div" style="display:none;">
-                    <select id="companyName">
-                        <option value="">Company ရွေးချယ်ရန်</option>
-                        <option value="CB Bank">CB Bank</option>
-                        <option value="MPT">MPT</option>
-                        <option value="Premier Coffee">Premier Coffee</option>
-                        <option value="Alpha Electronic">Alpha Electronic</option>
-                        <option value="Ayeyar Chanthar">ဧရာချမ်းသာ</option>
-                    </select>
-                </div>
-
-                <input type="number" id="amount" placeholder="ကျသင့်ငွေ (ကျပ်)">
-                <label>ဘောင်ချာရက်စွဲ</label>
-                <input type="date" id="entryDate">
-                
-                <div class="upload-area">
-                    <label>ဘောင်ချာဓာတ်ပုံ</label>
-                    <input type="file" id="voucherImg" accept="image/*" capture="camera">
-                </div>
-
-                <button class="btn save-btn" onclick="saveVoucher()">သိမ်းဆည်းမည်</button>
-            </div>
-            <button class="back-link" onclick="showSection('voucher-menu')">← နောက်သို့</button>
-        </div>
-
-        <div id="search-section" class="section pink-theme" style="display:none;">
-            <h3>ဘောင်ချာမှတ်တမ်းများ</h3>
-            <div class="search-bar-container">
-                <input type="text" id="voucherSearch" placeholder="ကားနံပါတ် သို့မဟုတ် ဘောင်ချာနံပါတ်ဖြင့် ရှာပါ" onkeyup="searchVouchers()">
-            </div>
-            <div id="voucher-list"></div>
-            <button class="back-link" onclick="showSection('voucher-menu')">← နောက်သို့</button>
-        </div>
-
-        <div id="expense-menu" class="section" style="display:none;">
-            <button class="btn btn-exp-add" onclick="openExpenseForm()">အသုံးစရိတ်မှတ်ရန်</button>
-            <button class="btn btn-exp-list" onclick="showSection('expense-list-section')">အသုံးစရိတ်မှတ်တမ်း</button>
-            <button class="back-link" onclick="showSection('main-menu')">← ပင်မစာမျက်နှာ</button>
-        </div>
-
-        <div id="expense-form-section" class="section" style="display:none;">
-            <h3 id="exp-form-title">အသုံးစရိတ်မှတ်ရန်</h3>
-            <div class="form-group">
-                <input type="hidden" id="exp-edit-id">
-                <input type="text" id="expDesc" placeholder="အကြောင်းအရာ">
-                <input type="number" id="expAmount" placeholder="သုံးငွေပမာဏ (ကျပ်)">
-                <input type="date" id="expDate">
-                <textarea id="expNote" maxlength="1000" placeholder="မှတ်ချက် (စာလုံးရေ ၁၀၀၀ အထိ)"></textarea>
-                <div class="upload-area">
-                    <label>အသုံးစရိတ်ဓာတ်ပုံ</label>
-                    <input type="file" id="expImg" accept="image/*" capture="camera">
-                </div>
-                <button class="btn save-btn" onclick="saveExpense()">သိမ်းဆည်းမည်</button>
-            </div>
-            <button class="back-link" onclick="showSection('expense-menu')">← နောက်သို့</button>
-        </div>
-
-        <div id="expense-list-section" class="section green-theme" style="display:none;">
-            <h3>အသုံးစရိတ်မှတ်တမ်း</h3>
-            <div class="search-bar-container">
-                <label>နေ့စွဲဖြင့်ရှာရန်</label>
-                <input type="date" id="searchExpDate" onchange="searchExpenses()">
-            </div>
-            <div id="expense-display-list"></div>
-            <button class="back-link" onclick="showSection('expense-menu')">← နောက်သို့</button>
-        </div>
-
-        <div id="detail-modal" class="modal" style="display:none;">
-            <div class="modal-content" id="detail-content"></div>
-            <button class="btn close-btn" onclick="closeModal()">ပိတ်မည်</button>
+    <div id="lock-screen" class="lock-container">
+        <div class="lock-box">
+            <h2>အရှည်ကြီး ကားအောက်ပိုင်း</h2>
+            <p>စကားဝှက် နံပါတ်ထည့်ရန်</p>
+            <input type="password" id="passInput" placeholder="••••">
+            <button class="btn-lock-submit" onclick="checkPassword()">ဝင်ရောက်မည်</button>
+            <p id="lock-error" class="error-msg"></p>
+            <button id="forgot-btn" class="btn-forgot" style="display:none;" onclick="showHint()">Forgot Password?</button>
+            <p id="hint-text" class="hint-msg"></p>
         </div>
     </div>
+
+    <div id="app-interface" style="display: none;">
+        
+        <div class="top-buddha-banner">
+            ဗုဒ္ဓံ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ဓမ္မံ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; သံဃံ
+        </div>
+
+        <div class="container">
+            <div class="hero-section">
+                <h1 class="hero-text">AshayKyi</h1>
+                <p class="hero-subtext">Car Suspension Services</p>
+            </div>
+
+            <div id="main-menu" class="main-buttons">
+                <button class="btn-plain-white" onclick="showSection('voucher-menu')">ဘောင်ချာစာရင်း</button>
+                <button class="btn-plain-white" onclick="showSection('expense-menu')">အသုံးစရိတ်များ</button>
+            </div>
+
+            <div id="toast-alert" class="toast">ဘောင်ချာထည့်သွင်းပြီးပါပြီ။</div>
+
+            <div id="voucher-menu" class="section-clean" style="display:none;">
+                <div class="section-header">ဘောင်ချာစာရင်း စီမံခန့်ခွဲမှု</div>
+                <button class="btn btn-sub" onclick="openVoucherForm('External')">အပြင်ကားဘောင်ချာ သွင်းရန်</button>
+                <button class="btn btn-sub" onclick="openVoucherForm('Company')">Company ကားဘောင်ချာ သွင်းရန်</button>
+                <button class="btn btn-sub" onclick="showSection('search-section')">ဘောင်ချာမှတ်တမ်းများ ရှာဖွေရန်</button>
+                <button class="back-link" onclick="showSection('main-menu')">← ပင်မစာမျက်နှာ</button>
+            </div>
+
+            <div id="voucher-form-section" class="section-clean" style="display:none;">
+                <h3 id="form-title">ဘောင်ချာအသစ်သွင်းခြင်း</h3>
+                <div class="form-group">
+                    <input type="hidden" id="edit-id">
+                    <input type="text" id="carNo" placeholder="ကားနံပါတ်">
+                    <input type="text" id="carModel" placeholder="ကားအမျိုးအစား">
+                    <input type="text" id="voucherNo" placeholder="ဘောင်ချာနံပါတ်">
+                    
+                    <div id="external-fields">
+                        <input type="number" id="extRemainingAmount" placeholder="ကျန်ငွေ (ကျပ်)">
+                    </div>
+                    
+                    <div id="company-fields" style="display:none;">
+                        <select id="companyName">
+                            <option value="">Company ရွေးချယ်ရန်</option>
+                            <option value="CB Bank">CB Bank</option>
+                            <option value="MPT">MPT</option>
+                            <option value="Premier Coffee">Premier Coffee</option>
+                            <option value="Alpha Electronic">Alpha Electronic</option>
+                            <option value="ဧရာချမ်းသာ">ဧရာချမ်းသာ</option>
+                        </select>
+                        <input type="text" id="driverPhone" placeholder="ကားဆရာဖုန်းနံပါတ်">
+                        <input type="text" id="driverRK" placeholder="ကားဆရာအာရကေ">
+                        <input type="number" id="advancePaidAmount" placeholder="ကြိုစိုက်ထားပေးရသောငွေ (ကျပ်)">
+                    </div>
+
+                    <input type="number" id="amount" placeholder="ကျသင့်ငွေ (ကျပ်)">
+                    <div class="date-input">
+                        <label>ဘောင်ချာထည့်တဲ့ရက်စွဲ</label>
+                        <input type="date" id="entryDate">
+                    </div>
+                    <div class="upload-area">
+                        <label><i class="fa-solid fa-camera"></i> ဘောင်ချာဓာတ်ပုံရိုက်ထည့်ရန်</label>
+                        <input type="file" id="voucherImg" accept="image/*" capture="camera">
+                    </div>
+                    <button class="btn btn-save" onclick="saveVoucher()">သိမ်းဆည်းမည်</button>
+                </div>
+                <button class="back-link" onclick="showSection('voucher-menu')">← နောက်သို့</button>
+            </div>
+
+            <div id="search-section" class="section-clean" style="display:none;">
+                <h3>ဘောင်ချာမှတ်တမ်း ရှာဖွေခြင်း</h3>
+                <div class="search-container">
+                    <input type="text" id="vSearch" placeholder="ကားနံပါတ် သို့မဟုတ် ဘောင်ချာနံပါတ် ရေးပါ..." oninput="searchVouchers()">
+                    <button class="search-icon-btn" onclick="searchVouchers()"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <div id="voucher-list" class="data-list"></div>
+                <button class="back-link" onclick="showSection('voucher-menu')">← နောက်သို့</button>
+            </div>
+
+            <div id="expense-menu" class="section-clean" style="display:none;">
+                <div class="section-header">အသုံးစရိတ် စီမံခန့်ခွဲမှု</div>
+                <button class="btn btn-sub" onclick="openExpenseForm()">အသုံးစရိတ်မှတ်ရန်</button>
+                <button class="btn btn-sub" onclick="showSection('expense-list-section')">အသုံးစရိတ်မှတ်တမ်းကြည့်ရန်</button>
+                <button class="back-link" onclick="showSection('main-menu')">← ပင်မစာမျက်နှာ</button>
+            </div>
+
+            <div id="expense-form-section" class="section-clean" style="display:none;">
+                <h3 id="exp-form-title">အသုံးစရိတ်အသစ်မှတ်ရန်</h3>
+                <div class="form-group">
+                    <input type="hidden" id="edit-exp-id">
+                    <input type="text" id="expDesc" placeholder="အကြောင်းအရာ">
+                    <input type="number" id="expAmount" placeholder="သုံးငွေပမာဏ (ကျပ်)">
+                    <div class="date-input">
+                        <label>အသုံးပြုသည့်နေ့</label>
+                        <input type="date" id="expDate">
+                    </div>
+                    <textarea id="expNote" maxlength="1000" placeholder="မှတ်ချက် (စာလုံးရေ ၁၀၀၀ ခန့်အထိရေးနိုင်သည်)"></textarea>
+                    <div class="upload-area">
+                        <label><i class="fa-solid fa-camera"></i> ပုံရိုက်ထည့်ရန် (လိုအပ်လျှင်)</label>
+                        <input type="file" id="expImg" accept="image/*" capture="camera">
+                    </div>
+                    <button class="btn btn-save" onclick="saveExpense()">အသုံးစရိတ် သိမ်းမည်</button>
+                </div>
+                <button class="back-link" onclick="showSection('expense-menu')">← နောက်သို့</button>
+            </div>
+
+            <div id="expense-list-section" class="section-clean" style="display:none;">
+                <h3>အသုံးစရိတ်မှတ်တမ်း</h3>
+                <div class="search-container">
+                    <input type="date" id="searchExpDate" onchange="searchExpenses()">
+                    <button class="search-icon-btn" onclick="searchExpenses()"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <div id="expense-display" class="data-list"></div>
+                <button class="back-link" onclick="showSection('expense-menu')">← နောက်သို့</button>
+            </div>
+
+            <div id="detail-modal" class="modal" style="display:none;">
+                <div class="modal-content" id="detail-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
